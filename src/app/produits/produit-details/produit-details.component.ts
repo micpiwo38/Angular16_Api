@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Produits } from '../produits';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PRODUITS } from '../mock-produits';
+import { ProduitsService } from '../produits.service';
 
 
 @Component({
@@ -14,14 +14,20 @@ export class ProduitDetailsComponent implements OnInit{
   produit_liste: Produits[] = [];
   produit!: Produits | undefined
   //Injection de dependance = Module de routing Angular
-  constructor(private route_active: ActivatedRoute, private router: Router){}
-  message: string = "";
+  constructor(
+    private route_active: ActivatedRoute, 
+    private router: Router,
+    private produits_service: ProduitsService
+    
+    ){}
+  
 
   ngOnInit(): void {
-      this.produit_liste = PRODUITS;
-      const route_param_ID: string|null = this.route_active.snapshot.paramMap.get("id_produit");
-      if(route_param_ID){
-        this.produit = this.produit_liste.find(produit => produit.id == +route_param_ID)
+      //recup de id dans URL
+      const route_param_produitID: string|null = this.route_active.snapshot.paramMap.get("id_produit");
+      if(route_param_produitID){
+        //Appel de la methode by id du service + = string to int
+        this.produit = this.produits_service.get_produit_by_id(+route_param_produitID);
       }
   }
 

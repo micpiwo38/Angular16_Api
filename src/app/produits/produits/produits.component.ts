@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PRODUITS } from "../mock-produits"
 import { Produits } from '../produits';
 import { Router } from '@angular/router';
+import { ProduitsService } from '../produits.service';
 
 
 @Component({
@@ -12,31 +12,20 @@ import { Router } from '@angular/router';
 })
 export class ProduitsComponent implements OnInit{
 
-  produits: Produits[] = PRODUITS
-  un_produit: Produits | undefined;
-  
-  constructor(private router: Router){}
+  //produits: Produits[] = PRODUITS
+  produits: Produits[] | undefined;
+  //Pas d'instance du service (const service = new ProduitsService) mais un injection dans les paramètre du constructeur
+  //Donc une seule instance (singleton) comme une boite noir
+  //Le service donne acces au methode get get by id et categorie
+  constructor(private produits_service: ProduitsService, private router: Router){}
 
   ngOnInit(): void {
-    console.table(PRODUITS)
-      
+    //Cette methode get_all_produits();  retourne PRODUITS
+    this.produits = this.produits_service.get_all_produits();  
   }
 
   details_produit(produit: Produits){
       alert(`Nom du produit : ${produit.nom_produit}`)
-  }
-
-  //Choisir un produit avec input number
-  choix_produit(produit_id: string){
-    //Ici le + convertit .value: string en number
-    const id = +produit_id;
-    const recherche_produit: Produits | undefined = this.produits.find(produit => produit.id == id);
-    if(recherche_produit){
-      console.log(`Vous avez selectionnez : ${recherche_produit?.nom_produit}`)
-      this.un_produit = recherche_produit;
-    }else{
-      this.un_produit = recherche_produit;
-    }
   }
 
   afficher_details_produit(produit: Produits){
