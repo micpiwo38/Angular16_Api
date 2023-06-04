@@ -7,6 +7,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ErreurUrlComponent } from './erreur-url/erreur-url.component';
 import { ProduitsModule } from './produits/produits.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,8 @@ import { ProduitsModule } from './produits/produits.module';
   ],
   imports: [
     BrowserModule,
+    //Formulaire
+    FormsModule,
     //Import du module Produits
     ProduitsModule,
     //Lire les modules avant le routing pour eviter qu'il charge la 404 par defaut
