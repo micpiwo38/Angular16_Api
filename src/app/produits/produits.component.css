@@ -1,0 +1,14 @@
+.card{
+    border: none;
+    height: 100%;
+    transition: 0.2s;
+}
+
+.card:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.card-header:first-child{
+    border-radius: 0;
+}

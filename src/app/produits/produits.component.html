@@ -1,0 +1,28 @@
+<div class="container p-3">
+  <h2 class="text-warning">NOS PRODUITS</h2>
+  <div class="row">
+    <h3 class="text-primary">Choisir un produit</h3>
+    <em><a href="https://www.youtube.com/watch?v=DTIYVffhJuU" target="_blank">La suite du tuto a 2h06</a></em>
+
+    <input #choix type="number" class="form-control mt-3" (keyup.enter)="choix_produit(choix.value)"/>
+    <p class="alert alert-success p-3 mt-3" *ngIf="un_produit">Votre avrez choisi : {{un_produit.nom_produit}}</p>
+    <p class="alert alert-danger p-3 mt-3" *ngIf="!un_produit">Aucun produit ne corespond a votre recherche !</p>
+
+
+    <div *ngFor="let produit of produits" class="col-md-3 col-sm-12 mt-3">
+      <div class="card text-info bg-white mb-3" style="max-width: 20rem" appBorderProduitsCard="red">
+        <h3 class="card-header bg-warning text-danger text-center p-3">{{ produit.nom_produit }}</h3>
+        <div class="d-flex justify-content-center p-3">
+            <img src="{{ produit.image_produit }}" alt="" title="" width="50%" />
+        </div>
+        <div class="card-body">
+          <b class="text-danger">Categorie : {{ produit.categorie_produit.join(" - ") }} </b>
+          <p>En stock : {{produit.en_stock ? "DISPONIBLE" : "NON DISPONIBLE"}}</p>
+          <em class="card-text">Date de depot : {{ produit.date_creation.toLocaleDateString("fr-FR") }}</em>
+          <h4 class="card-title text-success">Prix : {{ produit.prix_produit }} €</h4>
+          <button class="btn btn-success mt-3"(click)="details_produit(produit)">Plus d'infos</button>        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
