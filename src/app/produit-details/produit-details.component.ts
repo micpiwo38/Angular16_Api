@@ -1,13 +1,28 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Produits } from '../produits';
+import { ActivatedRoute } from '@angular/router';
+import { PRODUITS } from '../mock-produits';
+import { AccueilComponent } from '../accueil/accueil.component';
 
 @Component({
   selector: 'app-produit-details',
   templateUrl: './produit-details.component.html',
   styleUrls: ['./produit-details.component.css']
 })
-export class ProduitDetailsComponent {
+export class ProduitDetailsComponent implements OnInit{
 
-  @Input()
-  produit!: Produits
+  produit_liste: Produits[] = [];
+  produit!: Produits | undefined
+  //Injection de dependance = Module de routing Angular
+  constructor(private route_active: ActivatedRoute){}
+  message: string = "";
+
+  ngOnInit(): void {
+      this.produit_liste = PRODUITS;
+      const route_param_ID: string|null = this.route_active.snapshot.paramMap.get("id_produit");
+      if(route_param_ID){
+        this.produit = this.produit_liste.find(produit => produit.id == +route_param_ID)
+      }
+    
+  }
 }

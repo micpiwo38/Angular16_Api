@@ -5,10 +5,12 @@ import { ProduitsComponent } from './produits/produits.component';
 import { ProduitDetailsComponent } from './produit-details/produit-details.component';
 
 const routes: Routes = [
-  {path:"", redirectTo:"accueil", pathMatch:"full"},
   {path: "accueil", component: AccueilComponent},
   {path: "produits", component: ProduitsComponent}, 
-  {path: "produits/:id_produit", component: ProduitDetailsComponent}
+  {path: "produits/:id_produit", component: ProduitDetailsComponent},
+  {path:"", redirectTo:"accueil", pathMatch:"full"},
+  //Si aucune route ne match => 
+  {path: "**", component: AccueilComponent}
 ]
 
 @NgModule({

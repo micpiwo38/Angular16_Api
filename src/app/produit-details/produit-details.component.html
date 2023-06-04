@@ -1,3 +1,26 @@
-<div class="container p-3">
-    TEST
+<div class="container p-3 d-flex justify-content-center">
+    <div *ngIf="produit" class="card text-info bg-white mb-3" style="width: 35rem" appBorderProduitsCard>
+        <h3 class="card-header bg-warning text-danger text-center p-3">{{ produit.nom_produit }}</h3>
+        <div class="d-flex justify-content-center p-3">
+            <img src="{{ produit.image_produit }}" alt="" title="" width="50%" />
+        </div>
+        <div class="card-body">
+          <span *ngFor="let la_categorie of produit.categorie_produit" class="{{ la_categorie | produitCategorieColor}}">
+            <b class="text-white" style="font-size: 1rem;">{{ la_categorie }} </b>
+          </span>
+        
+
+          <p>En stock : {{produit.en_stock ? "DISPONIBLE" : "NON DISPONIBLE"}}</p>
+          <em class="card-text">Date de depot : {{ produit.date_creation | date:"dd/mm/YYYY" | uppercase }}</em>
+          <h4 class="card-title text-success">Prix : {{ produit.prix_produit }} €</h4>
+          <button class="btn btn-success mt-3">Ajouter au panier</button> 
+          <a class="btn btn-info mt-3 mx-3" routerLink="/produits" >Retour</a>          
+        </div>
+      </div>
+      <div *ngIf="!produit" class="alert alert-danger p-3">
+        <p>Aucun produit pour cet ID</p>
+        <div class="text-center">
+            <a routerLink="/produits" class="btn btn-warning">Retour</a>
+        </div>
+      </div>
 </div>
