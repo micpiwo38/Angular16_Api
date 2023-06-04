@@ -10,7 +10,7 @@
 
 
     <div *ngFor="let produit of produits" class="col-md-3 col-sm-12 mt-3">
-      <div class="card text-info bg-white mb-3" style="max-width: 20rem" appBorderProduitsCard="red">
+      <div class="card text-info bg-white mb-3" style="max-width: 20rem" appBorderProduitsCard>
         <h3 class="card-header bg-warning text-danger text-center p-3">{{ produit.nom_produit }}</h3>
         <div class="d-flex justify-content-center p-3">
             <img src="{{ produit.image_produit }}" alt="" title="" width="50%" />

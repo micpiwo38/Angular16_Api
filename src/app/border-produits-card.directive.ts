@@ -23,6 +23,7 @@ export class BorderProduitsCardDirective {
     this.setBoder(this.borderColor || this.change_color);
   }
 
+  //La souris sort de la carte
   @HostListener("mouseleave") onMouseLeave(){
     this.setBoder(this.initial_color);
   }
