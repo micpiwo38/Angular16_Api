@@ -5,22 +5,26 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 export class BorderProduitsCardDirective {
 
+  initial_color: string = "#f5f5f5"
+  default_color: string = "#f5f5f5";
+  change_color: string = "#009688";
   //Recup de l'element du DOM = carte produit
   constructor(private element: ElementRef ) {
     //Appel des methodes lors de l'init cu composant
     this.setHeight(100);
+    this.setBoder(this.default_color)
   }
 
-  //Operateur d'entree
+  //Operateur d'entree + creation d'un alias (ici borderColor )
   @Input("border-produits-card") borderColor: string = "";
 
   //HostListener permet de trigger un event = addEventListener
   @HostListener("mouseenter") onMouseEnter(){
-    this.setBoder(this.borderColor || "#009688");
+    this.setBoder(this.borderColor || this.change_color);
   }
 
   @HostListener("mouseleave") onMouseLeave(){
-    this.setBoder("#f5f5f5");
+    this.setBoder(this.initial_color);
   }
 
 
