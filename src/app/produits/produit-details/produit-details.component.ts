@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Produits } from '../produits';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PRODUITS } from '../mock-produits';
-import { AccueilComponent } from '../accueil/accueil.component';
+
 
 @Component({
   selector: 'app-produit-details',

@@ -5,26 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { AccueilComponent } from './accueil/accueil.component';
-import { ProduitsComponent } from './produits/produits.component';
-import { BorderProduitsCardDirective } from './border-produits-card.directive';
-import { ProduitCategorieColorPipe } from './produit-categorie-color.pipe';
-import { ProduitDetailsComponent } from './produit-details/produit-details.component';
 import { ErreurUrlComponent } from './erreur-url/erreur-url.component';
+import { ProduitsModule } from './produits/produits.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     AccueilComponent,
-    ProduitsComponent,
-    BorderProduitsCardDirective,
-    ProduitCategorieColorPipe,
-    ProduitDetailsComponent,
     ErreurUrlComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    //Import du module Produits
+    ProduitsModule,
+    //Lire les modules avant le routing pour eviter qu'il charge la 404 par defaut
+    AppRoutingModule,
   ],
   //Injection de dependances
   providers: [],
