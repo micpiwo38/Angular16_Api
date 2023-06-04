@@ -1,0 +1,8 @@
+<div *ngIf="produit_enfant" class="container p-3 bg-white mt-3">
+    <h2 class="text-warning">Editer {{produit_enfant.nom_produit}}</h2> 
+    <div class="text-center">
+        <img class="img-fluid rounded" src="{{produit_enfant.image_produit}}" alt="" title="{{produit_enfant.nom_produit}}" width="25%"/>
+    </div>
+    <!--Source [produit] = @Input de produit-edition et la destination = produit de validation edition produit .ts-->
+    <app-produits-edition [produit]="produit_enfant"></app-produits-edition>
+</div>

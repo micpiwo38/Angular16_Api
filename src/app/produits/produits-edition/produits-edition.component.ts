@@ -23,12 +23,7 @@ export class ProduitsEditionComponent implements OnInit{
     ){}
 
   ngOnInit(){
-      //recup de id dans URL
-      const route_param_produitID: string|null = this.route_active.snapshot.paramMap.get("id_produit");
-      if(route_param_produitID){
-        //Appel de la methode by id du service + = string to int
-        this.produit = this.produits_service.get_produit_by_id(+route_param_produitID);
-      }
+     
       //Liste des categories depuis la methode du service
       this.categories = this.produits_service.get_produits_categorie();
       console.log(this.categories)

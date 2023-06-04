@@ -8,12 +8,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProduitsService } from './produits.service';
 import { FormsModule } from '@angular/forms';
 import { ProduitsEditionComponent } from './produits-edition/produits-edition.component';
+import { ValidationEditionProduitComponent } from './validation-edition-produit/validation-edition-produit.component';
 
 //Les routes qui ne concerne que le module Produits
 const produits_routes: Routes = [
   {path: "produits", component: ProduitsComponent}, 
   {path: "produits/:id_produit", component: ProduitDetailsComponent},
-  {path: "produit-edition/:id_produit", component: ProduitsEditionComponent}
+  {path: "produit-edition/:id_produit", component: ValidationEditionProduitComponent}
 ]
 
 //Appel des composants + directives + pipes propre au module Produits
@@ -23,7 +24,8 @@ const produits_routes: Routes = [
     ProduitsComponent,
     ProduitCategorieColorPipe,
     BorderProduitsCardDirective,
-    ProduitsEditionComponent
+    ProduitsEditionComponent,
+    ValidationEditionProduitComponent
   ],
   imports: [
     CommonModule,

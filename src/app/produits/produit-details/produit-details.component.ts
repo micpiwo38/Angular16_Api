@@ -34,4 +34,9 @@ export class ProduitDetailsComponent implements OnInit{
   back_to_produit(){
     this.router.navigate(["/produits"])
   }
+
+  editer_produit(produit: Produits){
+    console.log("ok click")
+    this.router.navigate(["/produit-edition", produit.id]);
+  }
 }
