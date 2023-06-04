@@ -7,11 +7,13 @@ import { BorderProduitsCardDirective } from './border-produits-card.directive';
 import { RouterModule, Routes } from '@angular/router';
 import { ProduitsService } from './produits.service';
 import { FormsModule } from '@angular/forms';
+import { ProduitsEditionComponent } from './produits-edition/produits-edition.component';
 
 //Les routes qui ne concerne que le module Produits
 const produits_routes: Routes = [
   {path: "produits", component: ProduitsComponent}, 
   {path: "produits/:id_produit", component: ProduitDetailsComponent},
+  {path: "produit-edition/:id_produit", component: ProduitsEditionComponent}
 ]
 
 //Appel des composants + directives + pipes propre au module Produits
@@ -20,7 +22,8 @@ const produits_routes: Routes = [
     ProduitDetailsComponent,
     ProduitsComponent,
     ProduitCategorieColorPipe,
-    BorderProduitsCardDirective
+    BorderProduitsCardDirective,
+    ProduitsEditionComponent
   ],
   imports: [
     CommonModule,

@@ -10,20 +10,20 @@ export class ProduitCategorieColorPipe implements PipeTransform {
     let color: string;
     switch(categorie){
       case "Meuble":
-        color = "bg-success p-3 rounded m-3";
+        color = "bg-success p-3 rounded mx-3 w-100";
         break;
       case "Hi-fi":
-        color = "bg-info p-3 rounded m-3";
+        color = "bg-info p-3 rounded mx-3 w-100";
         break;
         break;
       case "Jardin":
-        color = "bg-warning p-3 rounded m-3";
+        color = "bg-warning p-3 rounded mx-3 w-100";
         break;
       case "Electro-menager":
-        color = "bg-primary p-3 rounded m-3";
+        color = "bg-primary p-3 rounded mx-3 w-100";
         break;
       default:
-        color = "bg-secondary p-3 rounded -m-3";
+        color = "bg-secondary p-3 rounded mx-3 w-100";
         break;
     }
     return "badge " + color;
