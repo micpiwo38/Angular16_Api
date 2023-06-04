@@ -8,21 +8,27 @@
     <p class="alert alert-success p-3 mt-3" *ngIf="un_produit">Votre avrez choisi : {{un_produit.nom_produit}}</p>
     <p class="alert alert-danger p-3 mt-3" *ngIf="!un_produit">Aucun produit ne corespond a votre recherche !</p>
 
-
+   
     <div *ngFor="let produit of produits" class="col-md-3 col-sm-12 mt-3">
-      <div class="card text-info bg-white mb-3" style="max-width: 20rem" appBorderProduitsCard>
-        <h3 class="card-header bg-warning text-danger text-center p-3">{{ produit.nom_produit }}</h3>
-        <div class="d-flex justify-content-center p-3">
-            <img src="{{ produit.image_produit }}" alt="" title="" width="50%" />
+      <a [routerLink]="['/produits', produit.id]">
+        <div class="card text-info bg-white mb-3" style="max-width: 20rem" appBorderProduitsCard>
+          <h3 class="card-header bg-warning text-danger text-center p-3">{{ produit.nom_produit }}</h3>
+          <div class="d-flex justify-content-center p-3">
+              <img src="{{ produit.image_produit }}" alt="" title="" width="50%" />
+          </div>
+          <div class="card-body">
+            <span *ngFor="let la_categorie of produit.categorie_produit" class="{{ la_categorie | produitCategorieColor}}">
+              <b class="text-white" style="font-size: 1rem;">{{ la_categorie }} </b>
+            </span>
+          
+
+            <p>En stock : {{produit.en_stock ? "DISPONIBLE" : "NON DISPONIBLE"}}</p>
+            <em class="card-text">Date de depot : {{ produit.date_creation | date:"dd/mm/YYYY" | uppercase }}</em>
+            <h4 class="card-title text-success">Prix : {{ produit.prix_produit }} €</h4>
+            <button class="btn btn-success mt-3"(click)="details_produit(produit)">Plus d'infos</button>        
+          </div>
         </div>
-        <div class="card-body">
-          <b class="text-danger">Categorie : {{ produit.categorie_produit.join(" - ") }} </b>
-          <p>En stock : {{produit.en_stock ? "DISPONIBLE" : "NON DISPONIBLE"}}</p>
-          <em class="card-text">Date de depot : {{ produit.date_creation.toLocaleDateString("fr-FR") }}</em>
-          <h4 class="card-title text-success">Prix : {{ produit.prix_produit }} €</h4>
-          <button class="btn btn-success mt-3"(click)="details_produit(produit)">Plus d'infos</button>        
-        </div>
-      </div>
+    </a>
     </div>
   </div>
 </div>

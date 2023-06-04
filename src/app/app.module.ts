@@ -7,6 +7,8 @@ import { MenuComponent } from './menu/menu.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ProduitsComponent } from './produits/produits.component';
 import { BorderProduitsCardDirective } from './border-produits-card.directive';
+import { ProduitCategorieColorPipe } from './produit-categorie-color.pipe';
+import { ProduitDetailsComponent } from './produit-details/produit-details.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { BorderProduitsCardDirective } from './border-produits-card.directive';
     MenuComponent,
     AccueilComponent,
     ProduitsComponent,
-    BorderProduitsCardDirective
+    BorderProduitsCardDirective,
+    ProduitCategorieColorPipe,
+    ProduitDetailsComponent
   ],
   imports: [
     BrowserModule,
