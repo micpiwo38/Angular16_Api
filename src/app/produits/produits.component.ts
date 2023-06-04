@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { PRODUITS } from "../mock-produits"
 import { Produits } from '../produits';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class ProduitsComponent implements OnInit{
   produits: Produits[] = PRODUITS
   un_produit: Produits | undefined;
   
+  constructor(private router: Router){}
 
   ngOnInit(): void {
     console.table(PRODUITS)
@@ -36,4 +38,10 @@ export class ProduitsComponent implements OnInit{
       this.un_produit = recherche_produit;
     }
   }
+
+  afficher_details_produit(produit: Produits){
+    this.router.navigate(["/produits", produit.id]);
+  }
+
+
 }

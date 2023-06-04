@@ -9,6 +9,7 @@ import { ProduitsComponent } from './produits/produits.component';
 import { BorderProduitsCardDirective } from './border-produits-card.directive';
 import { ProduitCategorieColorPipe } from './produit-categorie-color.pipe';
 import { ProduitDetailsComponent } from './produit-details/produit-details.component';
+import { ErreurUrlComponent } from './erreur-url/erreur-url.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProduitDetailsComponent } from './produit-details/produit-details.compo
     ProduitsComponent,
     BorderProduitsCardDirective,
     ProduitCategorieColorPipe,
-    ProduitDetailsComponent
+    ProduitDetailsComponent,
+    ErreurUrlComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Produits } from '../produits';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PRODUITS } from '../mock-produits';
 import { AccueilComponent } from '../accueil/accueil.component';
 
@@ -14,7 +14,7 @@ export class ProduitDetailsComponent implements OnInit{
   produit_liste: Produits[] = [];
   produit!: Produits | undefined
   //Injection de dependance = Module de routing Angular
-  constructor(private route_active: ActivatedRoute){}
+  constructor(private route_active: ActivatedRoute, private router: Router){}
   message: string = "";
 
   ngOnInit(): void {
@@ -23,6 +23,9 @@ export class ProduitDetailsComponent implements OnInit{
       if(route_param_ID){
         this.produit = this.produit_liste.find(produit => produit.id == +route_param_ID)
       }
-    
+  }
+
+  back_to_produit(){
+    this.router.navigate(["/produits"])
   }
 }
