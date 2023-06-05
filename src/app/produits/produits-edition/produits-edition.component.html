@@ -1,93 +1,99 @@
 <div class="container p-3">
+    <div *ngIf="!produit">
+        <app-loader></app-loader>
+    </div>
     <!--#produit_form = variable de reference a form etat + validation + notif-->
-    <form *ngIf="produit" (ngSubmit)="valider_edition()" #produit_form="ngForm">
+    <div *ngIf="produit">
+        <form  (ngSubmit)="valider_edition()" #produit_form="ngForm">
 
-        <div class="mt-3">
-            <label for="nom_produit">Nom du produit</label>
-            <input
-                required
-                class="form-control"
-                type="text"
-                name="nom_produit"
-                id="nom_produit"
-                pattern="^[a-zA-Z0-9àéèç ]{1,255}$"
-                [(ngModel)]="produit.nom_produit"
-                #nom_produit="ngModel"
-            />
-            <!--Champ valide ou non modifié = on cache-->
-            <div [hidden]="nom_produit.valid || nom_produit.pristine"
-                class="alert alert-danger p-3 mt-3">
-                Ce champ est obligatoire
+            <div class="mt-3">
+                <label for="nom_produit">Nom du produit</label>
+                <input
+                    required
+                    class="form-control"
+                    type="text"
+                    name="nom_produit"
+                    id="nom_produit"
+                    pattern="^[a-zA-Z0-9àéèç ]{1,255}$"
+                    [(ngModel)]="produit.nom_produit"
+                    #nom_produit="ngModel"
+                />
+                <!--Champ valide ou non modifié = on cache-->
+                <div [hidden]="nom_produit.valid || nom_produit.pristine"
+                    class="alert alert-danger p-3 mt-3">
+                    Ce champ est obligatoire
+                </div>
             </div>
-        </div>
-
-        <div class="mt-3">
-            <label for="image_produit">Image du produit</label>
-            <input
-                required
-                class="form-control"
-                id="image_produit"
-                type="url"
-                name="image_produit"
-                [(ngModel)]="produit.image_produit"
-                #image_produit="ngModel"
-            />
-            <div [hidden]="image_produit.valid || image_produit.pristine"
-                class="alert alert-danger p-3 mt-3">
-                Ce champ est obligatoire
+    
+            <div class="mt-3">
+                <label for="image_produit">Image du produit</label>
+                <input
+                    required
+                    class="form-control"
+                    id="image_produit"
+                    type="url"
+                    name="image_produit"
+                    [(ngModel)]="produit.image_produit"
+                    #image_produit="ngModel"
+                />
+                <div [hidden]="image_produit.valid || image_produit.pristine"
+                    class="alert alert-danger p-3 mt-3">
+                    Ce champ est obligatoire
+                </div>
             </div>
-        </div>
-
-        <div class="mt-3">
-            <label for="prix_produit">Prix du produit</label>
-            <input
-                required
-                class="form-control"
-                type="number"
-                name="prix_produit"
-                id="prix_produit"
-                step="0.01"
-                pattern="^[+-]?([0-9]*[.])?[0-9]+{1,999}$"
-                [(ngModel)]="produit.prix_produit"
-                #prix_produit="ngModel"
-            />
-            <div [hidden]="prix_produit.valid || prix_produit.pristine"
-                class="alert alert-danger p-3 mt-3">
-                Ce champ est obligatoire
+    
+            <div class="mt-3">
+                <label for="prix_produit">Prix du produit</label>
+                <input
+                    required
+                    class="form-control"
+                    type="number"
+                    name="prix_produit"
+                    id="prix_produit"
+                    step="0.01"
+                    pattern="/^[0-9](?:\.[0-9]{1,2})?$/{1,999}$"
+                    [(ngModel)]="produit.prix_produit"
+                    #prix_produit="ngModel"
+                />
+                <div [hidden]="prix_produit.valid || prix_produit.pristine"
+                    class="alert alert-danger p-3 mt-3">
+                    Ce champ est obligatoire
+                </div>
             </div>
-        </div>
-
-        <div class="mt-3">
-            <form class="form-group">
-                <h4 class="text-warning">Vous devez ajouter au minimum un catégorie</h4>
-                <label for="categorie_produit">Catégorie de produit</label>
-                <p *ngFor="let categorie of categories">
-                  <label class="input-group-text bg-white">
-                    <input 
-                        required
-                        type="checkbox"
-                        class="mx-3"
-                        id="{{ categorie }}"
-                        [value]="categorie"
-                        [checked]="category_type(categorie)"
-                        [disabled]="!is_categorie_valide(categorie)"
-                        (change)="select_categorie($event, categorie)"/>
-                    <span [attr.for]="categorie">
-                      <div class="{{ categorie | produitCategorieColor }}">
-                        {{ categorie }}
-                      </div>
-                    </span>
-                  </label>
-                </p>
-              </form>
-        </div>
-
-        <div class="mt-3">
-            <!--Ref var du template #produit_form=ngForm dans la balise <form>-->
-            <button type="submit" class="btn btn-success mt-3"[disabled]="!produit_form.form.valid">
-                Valider l'edition
-            </button>
-        </div>
-    </form>
-    <h3 *ngIf="!produit" class="text-danger">Aucun produit a editer</h3>
+    
+            <div class="mt-3">
+                <form class="form-group">
+                    <h4 class="text-warning">Vous devez ajouter au minimum un catégorie</h4>
+                    <label for="categorie_produit">Catégorie de produit</label>
+                    <p *ngFor="let categorie of categories">
+                      <label class="input-group-text bg-white">
+                        <input 
+                            required
+                            type="checkbox"
+                            class="mx-3"
+                            id="{{ categorie }}"
+                            [value]="categorie"
+                            [checked]="category_type(categorie)"
+                            [disabled]="!is_categorie_valide(categorie)"
+                            (change)="select_categorie($event, categorie)"/>
+                        <span [attr.for]="categorie">
+                          <div class="{{ categorie | produitCategorieColor }}">
+                            {{ categorie }}
+                          </div>
+                        </span>
+                      </label>
+                    </p>
+                  </form>
+            </div>
+    
+            <div class="mt-3">
+                <!--Ref var du template #produit_form=ngForm dans la balise <form>-->
+                <button type="submit" class="btn btn-success mt-3"[disabled]="!produit_form.form.valid">
+                    Valider l'edition
+                </button>
+            </div>
+        </form>
+    </div>
+    
 </div>
+

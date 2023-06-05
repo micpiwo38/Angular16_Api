@@ -1,28 +1,69 @@
 <div class="container p-3">
+  <div *ngIf="produits"></div>
   <h2 class="text-warning">NOS PRODUITS</h2>
   <div class="row">
     <h3 class="text-primary">Choisir un produit</h3>
-    <em><a href="https://www.youtube.com/watch?v=DTIYVffhJuU" target="_blank">La suite du tuto a 6h46 POST HTTP</a></em>
+    <em
+      ><a href="https://www.youtube.com/watch?v=DTIYVffhJuU" target="_blank"
+        >La suite du tuto a 6h46 POST HTTP</a
+      ></em
+    >
 
+    <!--La barre de recherche-->
+    <app-rechercher-produits></app-rechercher-produits>
 
-    <div *ngFor="let produit of produits" class="col-md-3 col-sm-12 mt-3">
-        <div (click)="afficher_details_produit(produit)" class="card text-info bg-white mb-3" style="max-width: 20rem" appBorderProduitsCard>
-          <h3 class="card-header bg-warning text-danger text-center p-3">{{ produit.nom_produit }}</h3>
+      <div *ngFor="let produit of produits" class="col-md-3 col-sm-12 mt-3">
+        <div
+          (click)="afficher_details_produit(produit)"
+          class="card text-info bg-white mb-3"
+          style="max-width: 20rem"
+          appBorderProduitsCard
+        >
+          <h3 class="card-header bg-warning text-danger text-center p-3">
+            {{ produit.nom_produit }}
+          </h3>
           <div class="d-flex justify-content-center p-3">
-              <img src="{{ produit.image_produit }}" alt="" title="" width="50%" />
+            <img
+              src="{{ produit.image_produit }}"
+              alt=""
+              title=""
+              width="50%"
+            />
           </div>
           <div class="card-body">
-            <span *ngFor="let la_categorie of produit.categorie_produit" class="{{ la_categorie | produitCategorieColor}}">
-              <b class="text-white" style="font-size: 1rem;">{{ la_categorie }} </b>
+            <span
+              *ngFor="let la_categorie of produit.categorie_produit"
+              class="{{ la_categorie | produitCategorieColor }}"
+            >
+              <b class="text-white" style="font-size: 1rem"
+                >{{ la_categorie }}
+              </b>
             </span>
-          
 
-            <p>En stock : {{produit.en_stock ? "DISPONIBLE" : "NON DISPONIBLE"}}</p>
-            <em class="card-text">Date de depot : {{ produit.date_creation | date:"dd/mm/YYYY" | uppercase }}</em>
-            <h4 class="card-title text-success">Prix : {{ produit.prix_produit }} €</h4>
-            <button class="btn btn-success mt-3"(click)="details_produit(produit)">Plus d'infos</button>        
+            <p>
+              En stock :
+              {{ produit.en_stock ? "DISPONIBLE" : "NON DISPONIBLE" }}
+            </p>
+            <em class="card-text"
+              >Date de depot :
+              {{ produit.date_creation | date : "dd/mm/YYYY" | uppercase }}</em
+            >
+            <h4 class="card-title text-success">
+              Prix : {{ produit.prix_produit }} €
+            </h4>
+            <button
+              class="btn btn-success mt-3"
+              (click)="details_produit(produit)"
+            >
+              Plus d'infos
+            </button>
           </div>
         </div>
+      </div>
+    
+
+    <div *ngIf="!produits">
+      <app-loader></app-loader>
     </div>
   </div>
 </div>

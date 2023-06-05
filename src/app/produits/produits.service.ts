@@ -59,6 +59,21 @@ export class ProduitsService {
     );
   }
 
+  //Recherche par nom
+  rechercher_produits(nom_produit: string):Observable<Produits[]>{
+
+    //Si on tape - de 2 lettre
+    //Aucun resultat
+    /*if(nom.length <= 1){
+      return of([]);
+    }*/
+
+    return this.http.get<Produits[]>(`api/produits/?nom=${nom_produit}`).pipe(
+      tap((res) => this.produits_log(res)),
+      catchError((erreur) => this.produits_erreur(erreur, []))
+    )
+  }
+
   //Refactor des logs
   private produits_log(response: any){
     console.table(response);

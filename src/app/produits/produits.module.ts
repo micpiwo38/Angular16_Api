@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { ProduitsEditionComponent } from './produits-edition/produits-edition.component';
 import { ValidationEditionProduitComponent } from './validation-edition-produit/validation-edition-produit.component';
 import { AjouterProduitComponent } from './ajouter-produit/ajouter-produit.component';
+import { RechercherProduitsComponent } from './rechercher-produits/rechercher-produits.component';
+import { LoaderComponent } from './loader/loader.component';
 
 //Les routes qui ne concerne que le module Produits
 const produits_routes: Routes = [
@@ -28,7 +30,9 @@ const produits_routes: Routes = [
     BorderProduitsCardDirective,
     ProduitsEditionComponent,
     ValidationEditionProduitComponent,
-    AjouterProduitComponent
+    AjouterProduitComponent,
+    RechercherProduitsComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
