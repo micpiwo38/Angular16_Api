@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Produits } from './produits';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, tap, of } from 'rxjs';
 
 @Injectable()
@@ -26,8 +26,21 @@ export class ProduitsService {
     );
   }
 
+  //mise a jour d'un produit
+  update_produit(produit: Produits): Observable<null>{
+    //Option du headers
+    const httpOptions = {
+      headers: new HttpHeaders({'Constent-Type': 'application/json'})
+    };
+    //Methode put
+    return this.http.put("api/produits", produit, httpOptions).pipe(
+      tap((res) => this.produits_log(res)),
+      catchError((erreur) => this.produits_erreur(erreur, null))
+    )
+  }
+
   //Refactor des logs
-  private produits_log(response: Produits[]|Produits|undefined){
+  private produits_log(response: any){
     console.table(response);
   }
   //refactor des erreurs
