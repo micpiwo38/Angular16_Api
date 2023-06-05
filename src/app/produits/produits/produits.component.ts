@@ -20,8 +20,10 @@ export class ProduitsComponent implements OnInit{
   constructor(private produits_service: ProduitsService, private router: Router){}
 
   ngOnInit(): void {
-    //Cette methode get_all_produits();  retourne PRODUITS
-    this.produits = this.produits_service.get_all_produits();  
+    //Cette methode get_all_produits();  retourne PRODUITS API + abonnement
+    //Recup de observable des services + abonnement recup la liste de l'api et la stock dans le tableau produits[]
+    this.produits_service.get_all_produits()
+      .subscribe(produits => this.produits = produits);
   }
 
   details_produit(produit: Produits){

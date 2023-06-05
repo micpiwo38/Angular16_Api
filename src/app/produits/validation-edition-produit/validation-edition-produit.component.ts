@@ -22,9 +22,8 @@ export class ValidationEditionProduitComponent implements OnInit {
       this.route_active.snapshot.paramMap.get('id_produit');
     if (route_param_produitID) {
       //Appel de la methode by id du service + = string to int
-      this.produit_enfant = this.produits_service.get_produit_by_id(
-        +route_param_produitID
-      );
+      this.produits_service.get_produit_by_id(+route_param_produitID)
+      .subscribe(produit => this.produit_enfant = produit)
     }else{
       this.produit_enfant = undefined;
     }

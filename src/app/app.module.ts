@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {HttpClientModule} from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -8,6 +9,8 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { ErreurUrlComponent } from './erreur-url/erreur-url.component';
 import { ProduitsModule } from './produits/produits.module';
 import { FormsModule } from '@angular/forms';
+
+import {InMemoryDataService} from './in-memory-data.service'
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    //Http
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false}),
     //Formulaire
     FormsModule,
     //Import du module Produits
