@@ -8,8 +8,8 @@ describe('ConnexionComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ConnexionComponent]
-    });
+    imports: [ConnexionComponent]
+});
     fixture = TestBed.createComponent(ConnexionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -8,8 +8,8 @@ describe('ErreurUrlComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ErreurUrlComponent]
-    });
+    imports: [ErreurUrlComponent]
+});
     fixture = TestBed.createComponent(ErreurUrlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

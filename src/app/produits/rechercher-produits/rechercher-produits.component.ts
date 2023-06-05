@@ -3,11 +3,14 @@ import { Router } from '@angular/router';
 import { Produits } from '../produits';
 import { Observable, Subject, debounce, debounceTime, distinctUntilChanged, distinctUntilKeyChanged, switchMap } from 'rxjs';
 import { ProduitsService } from '../produits.service';
+import { NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-rechercher-produits',
-  templateUrl: './rechercher-produits.component.html',
-  styleUrls: ['./rechercher-produits.component.css']
+    selector: 'app-rechercher-produits',
+    templateUrl: './rechercher-produits.component.html',
+    styleUrls: ['./rechercher-produits.component.css'],
+    standalone: true,
+    imports: [NgFor, AsyncPipe]
 })
 export class RechercherProduitsComponent implements OnInit{
 

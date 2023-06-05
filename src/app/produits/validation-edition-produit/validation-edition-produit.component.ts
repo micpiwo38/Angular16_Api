@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Produits } from '../produits';
 import { ActivatedRoute } from '@angular/router';
 import { ProduitsService } from '../produits.service';
+import { ProduitsEditionComponent } from '../produits-edition/produits-edition.component';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-validation-edition-produit',
-  templateUrl: './validation-edition-produit.component.html',
-  styleUrls: ['./validation-edition-produit.component.css'],
+    selector: 'app-validation-edition-produit',
+    templateUrl: './validation-edition-produit.component.html',
+    styleUrls: ['./validation-edition-produit.component.css'],
+    standalone: true,
+    imports: [NgIf, ProduitsEditionComponent],
 })
 export class ValidationEditionProduitComponent implements OnInit {
   produit_enfant: Produits | undefined;

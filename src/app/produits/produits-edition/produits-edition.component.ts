@@ -2,11 +2,23 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProduitsService } from '../produits.service';
 import { Produits } from '../produits';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProduitCategorieColorPipe } from '../produit-categorie-color.pipe';
+import { FormsModule } from '@angular/forms';
+import { LoaderComponent } from '../loader/loader.component';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-produits-edition',
-  templateUrl: './produits-edition.component.html',
-  styleUrls: ['./produits-edition.component.css'],
+    selector: 'app-produits-edition',
+    templateUrl: './produits-edition.component.html',
+    styleUrls: ['./produits-edition.component.css'],
+    standalone: true,
+    imports: [
+        NgIf,
+        LoaderComponent,
+        FormsModule,
+        NgFor,
+        ProduitCategorieColorPipe,
+    ],
 })
 export class ProduitsEditionComponent implements OnInit {
   //Propriete d'entre = un produit concerné

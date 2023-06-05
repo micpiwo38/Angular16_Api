@@ -1,7 +1,8 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appBorderProduitsCard]'
+    selector: '[appBorderProduitsCard]',
+    standalone: true
 })
 export class BorderProduitsCardDirective {
 

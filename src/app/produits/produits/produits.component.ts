@@ -3,12 +3,19 @@ import { Component, OnInit } from '@angular/core';
 import { Produits } from '../produits';
 import { Router } from '@angular/router';
 import { ProduitsService } from '../produits.service';
+import { ProduitCategorieColorPipe } from '../produit-categorie-color.pipe';
+import { LoaderComponent } from '../loader/loader.component';
+import { BorderProduitsCardDirective } from '../border-produits-card.directive';
+import { RechercherProduitsComponent } from '../rechercher-produits/rechercher-produits.component';
+import { NgIf, NgFor, UpperCasePipe, DatePipe } from '@angular/common';
 
 
 @Component({
-  selector: 'app-produits',
-  templateUrl: './produits.component.html',
-  styleUrls: ['./produits.component.css']
+    selector: 'app-produits',
+    templateUrl: './produits.component.html',
+    styleUrls: ['./produits.component.css'],
+    standalone: true,
+    imports: [NgIf, RechercherProduitsComponent, NgFor, BorderProduitsCardDirective, LoaderComponent, UpperCasePipe, DatePipe, ProduitCategorieColorPipe]
 })
 export class ProduitsComponent implements OnInit{
 
