@@ -12,13 +12,15 @@ import { ValidationEditionProduitComponent } from './validation-edition-produit/
 import { AjouterProduitComponent } from './ajouter-produit/ajouter-produit.component';
 import { RechercherProduitsComponent } from './rechercher-produits/rechercher-produits.component';
 import { LoaderComponent } from './loader/loader.component';
+import { AuthGuard } from '../auth.guard';
+
 
 //Les routes qui ne concerne que le module Produits
 const produits_routes: Routes = [
-  {path: "produits", component: ProduitsComponent}, 
-  {path: "produits/:id_produit", component: ProduitDetailsComponent},
-  {path: "ajouter-produit", component: AjouterProduitComponent},
-  {path: "produit-edition/:id_produit", component: ValidationEditionProduitComponent}
+  {path: "ajouter-produit", component: AjouterProduitComponent, canActivate:[AuthGuard]},
+  {path: "produit-edition/:id_produit", component: ValidationEditionProduitComponent, canActivate: [AuthGuard]},
+  {path: "produits", component: ProduitsComponent, canActivate:[AuthGuard]}, 
+  {path: "produits/:id_produit", component: ProduitDetailsComponent,canActivate:[AuthGuard]},
 ]
 
 //Appel des composants + directives + pipes propre au module Produits

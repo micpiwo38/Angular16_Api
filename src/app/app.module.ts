@@ -10,14 +10,16 @@ import { ErreurUrlComponent } from './erreur-url/erreur-url.component';
 import { ProduitsModule } from './produits/produits.module';
 import { FormsModule } from '@angular/forms';
 
-import {InMemoryDataService} from './in-memory-data.service'
+import {InMemoryDataService} from './in-memory-data.service';
+import { ConnexionComponent } from './connexion/connexion.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     AccueilComponent,
-    ErreurUrlComponent
+    ErreurUrlComponent,
+    ConnexionComponent
   ],
   imports: [
     BrowserModule,
