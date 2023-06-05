@@ -14,6 +14,7 @@ export class ProduitsEditionComponent implements OnInit {
 
   //Tableau des categories
   categories: string[];
+  is_add_form: boolean;
 
   constructor(
     private route_active: ActivatedRoute,
@@ -24,8 +25,8 @@ export class ProduitsEditionComponent implements OnInit {
   ngOnInit() {
     //Liste des categories depuis la methode du service
     this.categories = this.produits_service.get_produits_categorie();
-    console.log(this.categories);
-    console.log(this.produit);
+    //Nous somme dans le formulaire d'ajout si url contiens 
+    this.is_add_form = this.router.url.includes("ajouter-produit");
   }
 
   //La categorie = check box
@@ -71,10 +72,21 @@ export class ProduitsEditionComponent implements OnInit {
   }
 
   valider_edition() {
-    //appel du produit services update produits
+    //On distingue ajouter et editer qui utilise le meme composant formulaire
+    //Si url contient = ajouter-produit = is_add_form = true et in est dans l'ajout
+    if(this.is_add_form){
+      //l'abbonement retourne un produit => le serveur va generer un nouvel id automatiquement nom present dans la classe de depart
+      this.produits_service.ajouter_produit(this.produit).subscribe((produit: Produits) => {
+        this.router.navigate(['/produits', produit.id]);
+      })
+    }else{
+      //Sinon on edite
+      //appel du produit services update produits
     this.produits_service.update_produit(this.produit).subscribe(() => {
       //redirection
       this.router.navigate(['/produits', this.produit.id]);
     });
+    }
+    
   }
 }

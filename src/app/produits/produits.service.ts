@@ -26,11 +26,23 @@ export class ProduitsService {
     );
   }
 
+  //Ajouter un produit
+  ajouter_produit(produits: Produits): Observable<Produits>{
+    //Option du headers
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.post<Produits>("api/produits", produits, httpOptions).pipe(
+      tap((res) => this.produits_log(res)),
+      catchError((erreur) => this.produits_erreur(erreur, null))
+    )
+  }
+
   //mise a jour d'un produit
   update_produit(produit: Produits): Observable<null>{
     //Option du headers
     const httpOptions = {
-      headers: new HttpHeaders({'Constent-Type': 'application/json'})
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
     //Methode put
     return this.http.put("api/produits", produit, httpOptions).pipe(
@@ -59,6 +71,6 @@ export class ProduitsService {
   
 
   get_produits_categorie(): string[]{
-    return ["Meuble", "Salon", "Cuisine", "Hi-fi","Jeux Vidéo"];
+    return ["Meuble", "Salon", "Cuisine", "Hi-fi","Jeux Vidéo", "Divers"];
   }
 }
