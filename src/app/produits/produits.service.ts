@@ -39,6 +39,14 @@ export class ProduitsService {
     )
   }
 
+  //Supprimer un produits
+  supprimer_produit_by_id(produit_id: number): Observable<Produits|undefined>{
+    return this.http.delete(`api/produits/${produit_id}`).pipe(
+      tap((un_produit) => this.produits_log(un_produit)),
+      catchError((erreur) => this.produits_erreur(erreur, undefined))
+    );
+  }
+
   //Refactor des logs
   private produits_log(response: any){
     console.table(response);

@@ -40,4 +40,9 @@ export class ProduitDetailsComponent implements OnInit{
     console.log("ok click")
     this.router.navigate(["/produit-edition", produit.id]);
   }
+
+  delete_produit(produit: Produits){
+    this.produits_service.supprimer_produit_by_id(produit.id)
+    .subscribe(() => this.back_to_produit());
+  }
 }

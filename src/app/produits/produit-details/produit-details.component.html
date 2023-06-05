@@ -30,7 +30,7 @@
         Prix : {{ produit.prix_produit }} €
       </h4>
       <a class="btn btn-warning mt-3 mx-3" (click)="editer_produit(produit)">Editer</a>
-      <button class="btn btn-success mt-3">Ajouter au panier</button>
+      <a class="btn btn-danger mt-3" (click)="delete_produit(produit)">Supprimer ce produit</a>
       <a class="btn btn-info mt-3 mx-3" (click)="back_to_produit()">Retour</a>
     </div>
   </div>
